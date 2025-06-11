@@ -1,0 +1,21 @@
+{
+  "endOfLine": "lf",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "semi": true,
+  "printWidth": 80,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "useTabs": false,
+  "arrowParens": "avoid",
+  "jsxSingleQuote": false,
+  "overrides": [
+    {
+      "files": "./components/builder/index.tsx",
+      "options": {
+        "printWidth": 160
+      }
+    }
+  ]
+}
