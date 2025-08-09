@@ -1,4 +1,50 @@
-.cache
-package.json
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js build output
+.next/
+out/
+dist/
+build/
+
+# Environment variables
+.env*
+!.env.example
+
+# Logs
+*.log*
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output
+
+# Cache directories
+.cache/
+.npm
+.eslintcache
+
+# Lock files
 package-lock.json
-public
+pnpm-lock.yaml
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor files
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Generated files
+*.d.ts.map

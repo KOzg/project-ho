@@ -9,13 +9,5 @@
   "jsxBracketSameLine": false,
   "useTabs": false,
   "arrowParens": "avoid",
-  "jsxSingleQuote": false,
-  "overrides": [
-    {
-      "files": "./components/builder/index.tsx",
-      "options": {
-        "printWidth": 160
-      }
-    }
-  ]
+  "jsxSingleQuote": false
 }
