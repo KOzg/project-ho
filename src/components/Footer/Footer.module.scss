@@ -18,22 +18,33 @@
       margin-bottom: 0.5rem;
       color: #000;
       opacity: 0.75;
-      @include font-size(16px);
-      @include line-height(16px);
-      @include letter-spacing(1px);
+      @include font-size(12px);
+      @include line-height(10px);
+      @include letter-spacing(0.5px);
+
+      @include respond-to(768px) {
+        @include font-size(16px);
+        @include line-height(16px);
+        @include letter-spacing(1px);
+      }
     }
     .lastUpdated {
       color: #000;
       opacity: 0.5;
-      @include font-size(16px);
-      @include line-height(16px);
-      @include letter-spacing(1px);
+      @include font-size(12px);
+      @include line-height(10px);
+      @include letter-spacing(0.5px);
+
+      @include respond-to(768px) {
+        @include font-size(16px);
+        @include line-height(16px);
+        @include letter-spacing(1px);
+      }
     }
   }
   .socialContainer {
     ul {
       display: flex;
-      flex-direction: row;
       list-style: none;
       gap: 1rem;
 
@@ -41,9 +52,15 @@
         color: rgb(4, 81, 197);
         text-transform: uppercase;
         text-decoration: none;
-        @include font-size(16px);
+        @include font-size(12px);
         @include line-height(10px);
         @include letter-spacing(0.5px);
+
+        @include respond-to(768px) {
+          @include font-size(16px);
+          @include line-height(16px);
+          @include letter-spacing(1px);
+        }
 
         &:hover,
         &:focus {
