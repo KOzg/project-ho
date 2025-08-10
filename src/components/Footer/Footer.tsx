@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './Footer.module.scss';
 
 export default function Footer() {
@@ -29,7 +30,13 @@ export default function Footer() {
                       rel="noopener noreferrer"
                       href="https://www.linkedin.com/in/kaan-ozgunay/"
                     >
-                      LinkedIn
+                      <Image
+                        src="/images/linkedin.png"
+                        alt="Linkedin"
+                        width={48}
+                        height={48}
+                        loading="lazy"
+                      />
                     </a>
                   </li>
                   <li>
@@ -38,7 +45,13 @@ export default function Footer() {
                       rel="noopener noreferrer"
                       href="https://github.com/KOzg"
                     >
-                      GitHub
+                      <Image
+                        src="/images/github.png"
+                        alt="GitHub"
+                        width={48}
+                        height={48}
+                        loading="lazy"
+                      />
                     </a>
                   </li>
                 </ul>

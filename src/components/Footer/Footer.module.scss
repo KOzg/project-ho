@@ -11,6 +11,14 @@
     justify-content: space-between;
     padding: 0.5rem 1rem;
     align-items: center;
+
+    @include respond-to(768px) {
+      padding: 1rem 4rem;
+    }
+
+    @include respond-to(1096px) {
+      padding: 1rem 6rem;
+    }
   }
 
   .copyrightContainer {
@@ -47,24 +55,15 @@
       display: flex;
       list-style: none;
       gap: 1rem;
+      margin: 0;
+      padding: 0;
 
       li > a {
-        color: rgb(4, 81, 197);
-        text-transform: uppercase;
-        text-decoration: none;
-        @include font-size(12px);
-        @include line-height(10px);
-        @include letter-spacing(0.5px);
-
         @include respond-to(768px) {
-          @include font-size(16px);
-          @include line-height(16px);
-          @include letter-spacing(1px);
-        }
-
-        &:hover,
-        &:focus {
-          color: #000;
+          img {
+            width: 64px;
+            height: 64px;
+          }
         }
       }
     }

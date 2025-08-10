@@ -19,7 +19,7 @@ export default function Header() {
           <nav className={styles.navigation}>
             <ul className={styles.leftTitle}>
               <li className={styles.title}>Kaan Ozgunay</li>
-              <li className={styles.subtitle}>Senior Software Engineer</li>
+              <li className={styles.subtitle}>Software Engineer</li>
             </ul>
             <ul className={styles.navigationList}>
               {headerConstants.navigation.map((link, index) => {
