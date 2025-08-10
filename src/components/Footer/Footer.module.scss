@@ -1,0 +1,55 @@
+@use '@/styles/_partials' as *;
+
+.footer {
+  background-color: #fff;
+  position: sticky;
+  bottom: 0;
+
+  .footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    align-items: center;
+  }
+
+  .copyrightContainer {
+    .copyright {
+      margin-bottom: 0.5rem;
+      color: #000;
+      opacity: 0.75;
+      @include font-size(16px);
+      @include line-height(16px);
+      @include letter-spacing(1px);
+    }
+    .lastUpdated {
+      color: #000;
+      opacity: 0.5;
+      @include font-size(16px);
+      @include line-height(16px);
+      @include letter-spacing(1px);
+    }
+  }
+  .socialContainer {
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      gap: 1rem;
+
+      li > a {
+        color: rgb(4, 81, 197);
+        text-transform: uppercase;
+        text-decoration: none;
+        @include font-size(16px);
+        @include line-height(10px);
+        @include letter-spacing(0.5px);
+
+        &:hover,
+        &:focus {
+          color: #000;
+        }
+      }
+    }
+  }
+}
