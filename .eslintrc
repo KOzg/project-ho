@@ -1,6 +1,7 @@
 {
   "extends": [
     "plugin:@typescript-eslint/recommended",
+    "plugin:jsx-a11y/recommended", // accessibility rules
     "next/core-web-vitals", // strict configs from eslint-config-next
     "prettier"
   ],
