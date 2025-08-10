@@ -1,0 +1,10 @@
+@use '../variables' as vars;
+// Container mixins
+
+@mixin make-container($gutter: vars.$container-padding-x) {
+  width: 100%;
+  padding-right: var(--#{vars.$variable-prefix}gutter-x, #{$gutter});
+  padding-left: var(--#{vars.$variable-prefix}gutter-x, #{$gutter});
+  margin-right: auto;
+  margin-left: auto;
+}

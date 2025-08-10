@@ -1,0 +1,20 @@
+/*!
+ * Bootstrap Grid v5.0.2 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+// styles/lib/bootstrap/_index.scss
+
+// Core functionality
+@forward 'variables';
+
+// Layout & Grid
+@forward 'grid';
+@forward 'containers';
+
+// Utilities
+@forward 'mixins/breakpoints';
+@forward 'mixins/container';
+@forward 'mixins/grid';

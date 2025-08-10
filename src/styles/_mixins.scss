@@ -1,0 +1,92 @@
+@use 'sass:math';
+@use 'sass:meta';
+
+@mixin respond-to($breakpoint) {
+  @media only screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin respond-to-max-width($breakpoint) {
+  @media only screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin respond-to-min-height($breakpoint) {
+  @media only screen and (min-height: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin respond-to-between($minBreakpoint, $maxBreakpoint) {
+  @media only screen and (min-width: $minBreakpoint) and (max-width: $maxBreakpoint) {
+    @content;
+  }
+}
+
+@mixin line-height($lh, $important: false) {
+  // Base font size for px-to-unitless calculation
+  $base-font-size: 16px !default;
+  $final-lh: null;
+
+  // Get the unit of the input value
+  $lh-unit: if(meta.type-of($lh) == 'number', math.unit($lh), false);
+
+  @if $lh-unit == 'px' {
+    // If px, calculate unitless value from base font size
+    $final-lh: math.div($lh, $base-font-size);
+  } @else if $lh-unit == 'rem' {
+    // If rem, get the unitless number by dividing by 1rem
+    $final-lh: math.div($lh, 1rem);
+  } @else {
+    // Otherwise, assume it's already a unitless number
+    $final-lh: $lh;
+  }
+
+  // Add !important suffix if needed
+  $lh-suffix: if($important, ' !important', '');
+
+  // Apply the final, line-height with rem
+  line-height: #{$final-lh}rem #{$lh-suffix};
+}
+
+@mixin letter-spacing($lh, $important: false) {
+  $lhUnit: if(meta.type-of($lh) == 'number', math.unit($lh), false);
+  $baseValue: 16 !default;
+  $baseLhUnit: rem !default;
+
+  @if $lhUnit == 'px' {
+    $lh: math.div($lh, ($lh * 0 + 1));
+  } @else if $lhUnit == 'rem' {
+    $lh: math.div($lh, ($lh * 0 + 1, $baseValue));
+  }
+
+  // set the px or rem value
+  $lhStatic: if($baseLhUnit == rem, #{math.div($lh, $baseValue)}rem, #{$lh}px);
+
+  // Add !important suffix if needed
+  $lhSuffix: if($important, ' !important', '');
+
+  letter-spacing: #{$lhStatic}#{$lhSuffix};
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    @content;
+  }
+
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}

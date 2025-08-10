@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use 'variables' as vars;
+@use 'mixins/container' as container;
+@use 'mixins/breakpoints' as breakpoints;
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+@if vars.$enable-grid-classes {
+  // Single container class with breakpoint max-widths
+  .container,
+  // 100% wide container at all breakpoints
+  .container-fluid {
+    @include container.make-container();
+  }
+
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in vars.$container-max-widths {
+    .container-#{$breakpoint} {
+      @extend .container-fluid;
+    }
+
+    @include breakpoints.media-breakpoint-up($breakpoint, vars.$grid-breakpoints) {
+      %responsive-container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
+
+      // Extend each breakpoint which is smaller or equal to the current breakpoint
+      $extend-breakpoint: true;
+
+      @each $name, $width in vars.$grid-breakpoints {
+        @if ($extend-breakpoint) {
+          .container#{breakpoints.breakpoint-infix($name, vars.$grid-breakpoints)} {
+            @extend %responsive-container-#{$breakpoint};
+          }
+
+          // Once the current breakpoint is reached, stop extending
+          @if ($breakpoint == $name) {
+            $extend-breakpoint: false;
+          }
+        }
+      }
+    }
+  }
+}
