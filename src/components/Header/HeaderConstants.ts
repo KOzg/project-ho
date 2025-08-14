@@ -5,8 +5,8 @@ export const headerConstants = {
       label: 'Home',
     },
     {
-      href: '/about',
-      label: 'About',
+      href: '/lab',
+      label: 'Lab',
     },
     {
       href: '/contact',
