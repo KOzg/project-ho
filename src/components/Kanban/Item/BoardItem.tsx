@@ -4,25 +4,16 @@ import { ActionTypes, KanbanAction } from '../Kanban.types';
 function BoardItem({
   id,
   title,
-  dispatch,
+  onDeleteHandler,
 }: {
   id: string;
   title: string;
-  dispatch: ActionDispatch<[action: KanbanAction]>;
+  onDeleteHandler: (id: string) => void;
 }) {
   return (
     <li>
       <span>{title}</span>
-      <button
-        onClick={() =>
-          dispatch({
-            type: ActionTypes.DELETE_ITEM,
-            payload: id,
-          })
-        }
-      >
-        Delete
-      </button>
+      <button onClick={() => onDeleteHandler(id)}>Delete</button>
     </li>
   );
 }

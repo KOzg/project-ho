@@ -1,12 +1,19 @@
 'use client';
 
-import { useState, useEffect, useReducer, JSX } from 'react';
+import {
+  useState,
+  useEffect,
+  useReducer,
+  JSX,
+  useCallback,
+  useMemo,
+} from 'react';
 
 import { kanbanReducer, initialBoard } from './utils/reducer';
 
 import BoardItem from './Item/BoardItem';
 
-import { KanbanBoard, ActionTypes, Item } from './Kanban.types';
+import { KanbanBoard, ActionTypes, Item, ItemStatusEnum } from './Kanban.types';
 
 function Kanban() {
   const [title, setTitle] = useState<string>('');
@@ -22,28 +29,38 @@ function Kanban() {
     }
   }, []);
 
-  // set board on local storage if they update
-  useEffect(() => {
-    localStorage.setItem('board', JSON.stringify(kanban));
-  }, [kanban]);
-
   const onSubmitHandler = () => {
     dispatch({ type: ActionTypes.ADD_ITEM, payload: title });
     setTitle('');
   };
 
-  // @TODO - useMemo()?? or React.Compiler??
-  const renderColumn = (head: Item) => {
-    const column: JSX.Element[] = [];
-    let node: Item | null = head || null;
-    while (node) {
-      column.push(
-        <BoardItem key={node.id} id={node.id} title={node.title} dispatch={dispatch} />
-      );
-      node = node.next ? kanban.idLookup.byId[node.next] : null;
-    }
-    return column;
-  };
+  // @TODO - check the performance of these useCallback/useMemo hooks
+  const onDeleteHandler = useCallback((id: string) => {
+    dispatch({
+      type: ActionTypes.DELETE_ITEM,
+      payload: id,
+    });
+  }, []);
+
+  // @TODO - React.Compiler instead???
+  const renderTodoColumn = useMemo(() => {
+    return (head: Item) => {
+      const column: JSX.Element[] = [];
+      let node: Item | null = head || null;
+      while (node) {
+        column.push(
+          <BoardItem
+            key={node.id}
+            id={node.id}
+            title={node.title}
+            onDeleteHandler={onDeleteHandler}
+          />
+        );
+        node = node.next ? kanban.idLookup.byId[node.next] : null;
+      }
+      return column;
+    };
+  }, [kanban.idLookup.idsByStatus[ItemStatusEnum.TO_DO]]);
 
   return (
     <>
@@ -70,7 +87,14 @@ function Kanban() {
       >
         Reset
       </button>
-      <ul>{renderColumn(kanban.idLookup.byId[kanban.lists.todo.head])}</ul>
+      <button
+        onClick={() => {
+          localStorage.setItem('board', JSON.stringify(kanban));
+        }}
+      >
+        Save
+      </button>
+      <ul>{renderTodoColumn(kanban.idLookup.byId[kanban.lists.todo.head])}</ul>
     </>
   );
 }
