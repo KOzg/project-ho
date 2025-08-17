@@ -1,6 +1,3 @@
-import { ActionDispatch } from 'react';
-import { ActionTypes, KanbanAction } from '../Kanban.types';
-
 function BoardItem({
   id,
   title,
