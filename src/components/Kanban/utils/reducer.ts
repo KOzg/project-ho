@@ -35,20 +35,25 @@ export const initialBoard = {
 export const kanbanReducer = produce(
   (draft: Draft<KanbanBoard>, action: KanbanAction) => {
     switch (action.type) {
+      case ActionTypes.SAVE_BOARD:
+        localStorage.setItem('board', JSON.stringify(action.payload));
+        break;
       case ActionTypes.SET_BOARD:
-        Object.assign(draft, action.payload)
+        Object.assign(draft, action.payload);
         break;
       case ActionTypes.RESET_BOARD:
-        Object.assign(draft, initialBoard)
+        Object.assign(draft, initialBoard);
+        localStorage.setItem('board', JSON.stringify(initialBoard));
         break;
       case ActionTypes.ADD_ITEM:
         addItem(action.payload as string, draft);
         break;
-      case 'DELETE_ITEM':
+      case ActionTypes.DELETE_ITEM:
         const itemToDelete = draft.idLookup.byId[action.payload];
         if (itemToDelete) {
           deleteItem(itemToDelete, draft);
         }
+        // @TODO - Update Item(title/status??)
         break;
       default:
         break;

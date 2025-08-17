@@ -30,16 +30,18 @@ export enum ItemStatusEnum {
 }
 
 export type KanbanAction =
-  | { type: 'SET_BOARD'; payload: KanbanBoard }
-  | { type: 'ADD_ITEM'; payload: string }
+  | { type: ActionTypes.SAVE_BOARD; payload: KanbanBoard }
+  | { type: ActionTypes.SET_BOARD; payload: KanbanBoard }
+  | { type: ActionTypes.RESET_BOARD }
+  | { type: ActionTypes.ADD_ITEM; payload: string }
+  | { type: ActionTypes.DELETE_ITEM; payload: string }
   | {
-      type: 'UPDATE_ITEM_STATUS';
+      type: ActionTypes.UPDATE_ITEM_STATUS;
       payload: { id: string; status: ItemStatusEnum };
-    }
-  | { type: 'DELETE_ITEM'; payload: string }
-  | { type: 'RESET_BOARD' };
+    };
 
 export enum ActionTypes {
+  SAVE_BOARD = 'SAVE_BOARD',
   SET_BOARD = 'SET_BOARD',
   ADD_ITEM = 'ADD_ITEM',
   UPDATE_ITEM_STATUS = 'UPDATE_ITEM_STATUS',

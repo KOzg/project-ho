@@ -1,17 +1,8 @@
-function BoardItem({
-  id,
-  title,
-  onDeleteHandler,
-}: {
-  id: string;
-  title: string;
-  onDeleteHandler: (id: string) => void;
-}) {
+function BoardItem({ title }: { title: string }) {
   return (
-    <li>
+    <>
       <span>{title}</span>
-      <button onClick={() => onDeleteHandler(id)}>Delete</button>
-    </li>
+    </>
   );
 }
 
