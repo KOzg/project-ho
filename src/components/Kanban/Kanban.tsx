@@ -6,7 +6,7 @@ import { kanbanReducer, initialBoard } from './utils/reducer';
 
 import Column from './Column/Column';
 
-import { KanbanBoard, ActionTypes, Item, ItemStatusEnum } from './Kanban.types';
+import { KanbanBoard, ActionTypes } from './Kanban.types';
 
 function Kanban() {
   const [title, setTitle] = useState<string>('');
