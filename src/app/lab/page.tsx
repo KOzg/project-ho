@@ -1,5 +1,5 @@
 import Clock from '@components/Clock/Clock';
-import ToDoList from '@components/ToDoList/ToDoList';
+import Kanban from '@components/Kanban/Kanban';
 // import { getAlbums } from './api';
 
 export default async function Lab() {
@@ -8,7 +8,7 @@ export default async function Lab() {
   return (
     <>
       <Clock />
-      <ToDoList />
+      <Kanban />
       {/*<AlbumCarousel/>*/}
     </>
   );
