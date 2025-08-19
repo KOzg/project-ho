@@ -8,7 +8,7 @@ import { TodoContext } from '../TodoProvider';
 import useAddTodo from '../utils/useAddTodo';
 
 export function TodoList() {
-  const { items } = use(TodoContext);
+  const { state } = use(TodoContext);
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -16,7 +16,6 @@ export function TodoList() {
 
   const {
     item,
-    announcement,
     handleInputChange,
     handleSubmit,
     error,
@@ -29,7 +28,7 @@ export function TodoList() {
     }
   }, [inputRef]);
 
-  const itemsToShow = searchTerm ? searchResults : items;
+  const itemsToShow = searchTerm ? searchResults : state.items;
 
   return (
     <>
@@ -44,7 +43,7 @@ export function TodoList() {
         aria-atomic="true"
         className="sr-only"
       >
-        {announcement}
+        {state.announcement}
       </div>
       <form onSubmit={handleSubmit}>
         <input

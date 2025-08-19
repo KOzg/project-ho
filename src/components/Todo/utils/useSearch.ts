@@ -3,7 +3,7 @@ import { TodoContext } from '../TodoProvider';
 import useDebounce from './useDebounce';
 
 export default function useSearch(searchTerm: string) {
-  const { items } = use(TodoContext);
+  const { state } = use(TodoContext);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const searchResults = useMemo(() => {
@@ -11,10 +11,10 @@ export default function useSearch(searchTerm: string) {
       return null;
     }
 
-    return items.filter(item =>
+    return state.items.filter(item =>
       item.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
     );
-  }, [debouncedSearchTerm, items]);
+  }, [debouncedSearchTerm, state.items]);
 
   return searchResults;
 }

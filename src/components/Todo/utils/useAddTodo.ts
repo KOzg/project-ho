@@ -7,14 +7,16 @@ import {
   useState,
 } from 'react';
 import { TodoContext } from '../TodoProvider';
+import { ActionTypes } from '../TodoProvider.types';
 import { validateInput } from './helpers';
+
 
 export default function useAddTodo() {
   const [item, setItem] = useState('');
   const [error, setError] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { items, setItems, announcement, setAnnouncement } = use(TodoContext);
+  const { state, dispatch } = use(TodoContext);
 
   const handleInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,26 +28,25 @@ export default function useAddTodo() {
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
-      const newItems = [item, ...items];
-      const validationError = validateInput(item, items);
+      const newItems = [item, ...state.items];
+      const validationError = validateInput(item, state.items);
       if (validationError) {
         setError(validationError);
         return;
       }
-      setItems(newItems);
+      dispatch({type:'SET_ITEMS', payload: newItems})
       setItem('');
-      setAnnouncement(`Added: ${item}`);
+       dispatch({type: ActionTypes.SET_ANNOUNCEMENT, payload: `Added: ${item}`});
 
       if (inputRef.current) {
         inputRef.current.focus();
       }
     },
-    [item, items, setAnnouncement, setItems]
+    [item, state.items, dispatch]
   );
 
   return {
     item,
-    announcement,
     error,
     inputRef,
     handleInputChange,

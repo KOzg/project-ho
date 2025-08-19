@@ -1,7 +1,8 @@
 'use client';
 
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useReducer } from 'react';
 import { TodoContextType } from './TodoProvider.types';
+import { todoReducer } from './utils/todoReducer';
 
 const initialTodos = {
   items: [],
@@ -10,19 +11,21 @@ const initialTodos = {
   setAnnouncement: () => {},
 };
 
-export const TodoContext = createContext<TodoContextType>(initialTodos);
+const initialContext = {
+    state: initialTodos,
+    dispatch: ()=>{}
+}
+
+export const TodoContext = createContext<TodoContextType>(initialContext);
 
 export function TodoProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<string[]>([]);
-  const [announcement, setAnnouncement] = useState('');
+  const [ state, dispatch] = useReducer(todoReducer, initialTodos)
 
   return (
     <TodoContext.Provider
       value={{
-        items,
-        setItems,
-        announcement,
-        setAnnouncement,
+        state,
+        dispatch
       }}
     >
       {children}
