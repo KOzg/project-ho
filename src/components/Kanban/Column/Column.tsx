@@ -5,7 +5,6 @@ import BoardItem from '../Item/BoardItem';
 import {
   ActionTypes,
   Item,
-  ItemStatusEnum,
   KanbanAction,
   KanbanBoard,
 } from '../Kanban.types';
@@ -26,7 +25,7 @@ function Column({
       type: ActionTypes.DELETE_ITEM,
       payload: id,
     });
-  }, []);
+  }, [dispatch]);
 
   // @TODO - React.Compiler instead???
   const renderTodoColumn = useMemo(() => {
@@ -47,7 +46,7 @@ function Column({
       }
       return column;
     };
-  }, [kanban.idLookup.idsByStatus[ItemStatusEnum.TO_DO]]);
+  }, [kanban.idLookup.byId, onDeleteHandler]);
 
   return (
     <ul>{renderTodoColumn(kanban.idLookup.byId[kanban.lists.todo.head])}</ul>

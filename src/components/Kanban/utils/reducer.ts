@@ -11,6 +11,7 @@ import { addItem, deleteItem } from './helpers';
 enableMapSet();
 
 export const initialBoard = {
+  // maintain a couple of hashes to have O(1) lookup
   idLookup: {
     byId: {},
     idsByStatus: {
@@ -31,7 +32,6 @@ export const initialBoard = {
 };
 
 // using immer for simplicity and 'mutate' state
-// right now i'm just keeping a couple of hashes maintained to have O(1) lookup
 export const kanbanReducer = produce(
   (draft: Draft<KanbanBoard>, action: KanbanAction) => {
     switch (action.type) {
