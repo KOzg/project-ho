@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use, useMemo } from 'react';
+import { useState, useEffect, use } from 'react';
 import ListItem from '@/components/Todo/ListItem/ListItem';
 
 import useSearch from '../utils/useSearch';
@@ -29,9 +29,7 @@ export function TodoList() {
     }
   }, [inputRef]);
 
-  const itemsToShow = useMemo(() => {
-    return searchTerm ? searchResults : items;
-  }, [items, searchResults, searchTerm]);
+  const itemsToShow = searchTerm ? searchResults : items;
 
   return (
     <>
