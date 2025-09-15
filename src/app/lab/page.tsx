@@ -8,7 +8,6 @@ import { TodoProvider } from '@/components/ToDo/TodoProvider';
 
 export default async function Lab() {
   // const albums = await getAlbums();
-  // console.log(albums);
   return (
     <>
       <Clock />
