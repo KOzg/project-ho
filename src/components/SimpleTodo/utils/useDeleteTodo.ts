@@ -1,5 +1,5 @@
 import { use, useCallback } from 'react';
-import { TodoContext } from '../TodoProvider';
+import { TodoContext } from '../SimpleTodoProvider';
 
 export default function useDeleteTodo() {
   const { state, dispatch } = use(TodoContext);

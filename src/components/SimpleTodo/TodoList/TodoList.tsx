@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, use } from 'react';
-import ListItem from '@/components/Todo/ListItem/ListItem';
+import ListItem from '@/components/SimpleTodo/ListItem/ListItem';
 
 import useSearch from '../utils/useSearch';
-import { TodoContext } from '../TodoProvider';
+import { TodoContext } from '../SimpleTodoProvider';
 import useAddTodo from '../utils/useAddTodo';
 
 export function TodoList() {

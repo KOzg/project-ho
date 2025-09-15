@@ -1,5 +1,5 @@
 import { use, useMemo } from 'react';
-import { TodoContext } from '../TodoProvider';
+import { TodoContext } from '../SimpleTodoProvider';
 import useDebounce from './useDebounce';
 
 export default function useSearch(searchTerm: string) {

@@ -6,8 +6,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import { TodoContext } from '../TodoProvider';
-import { ActionTypes } from '../TodoProvider.types';
+import { TodoContext } from '../SimpleTodoProvider';
+import { ActionTypes } from '../SimpleTodoProvider.types';
 import { validateInput } from './helpers';
 
 

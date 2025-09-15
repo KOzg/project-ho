@@ -1,4 +1,4 @@
-import { TodoAction, TodoStateType } from '../TodoProvider.types';
+import { TodoAction, TodoStateType } from '../SimpleTodoProvider.types';
 
 export function todoReducer(state: TodoStateType, action: TodoAction) {
   switch (action.type) {
